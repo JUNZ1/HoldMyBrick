@@ -1,0 +1,57 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/Menu/MainMenu.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Buttons/flatLight/flatLight14.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Buttons/lineLight/lineLight14.png" type="Texture" id=3]
+
+[node name="Node2D" type="Node2D"]
+
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Camera2D" type="Camera2D" parent="." index="0"]
+
+position = Vector2( 510.14, 300.643 )
+anchor_mode = 1
+rotating = false
+current = true
+zoom = Vector2( 1, 1 )
+limit_left = -10000000
+limit_top = -10000000
+limit_right = 10000000
+limit_bottom = 10000000
+limit_smoothed = false
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = false
+smoothing_speed = 5.0
+offset_v = 0.0
+offset_h = 0.0
+drag_margin_left = 0.2
+drag_margin_top = 0.2
+drag_margin_right = 0.2
+drag_margin_bottom = 0.2
+editor_draw_screen = true
+editor_draw_limits = false
+editor_draw_drag_margin = false
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="." index="1"]
+
+position = Vector2( 425.797, 221.741 )
+scale = Vector2( 3.43288, 3.25117 )
+normal = ExtResource( 2 )
+pressed = ExtResource( 3 )
+bitmask = null
+shape = null
+shape_centered = true
+shape_visible = true
+passby_press = false
+action = ""
+visibility_mode = 0
+
+

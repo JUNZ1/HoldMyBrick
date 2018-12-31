@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scenes/GridCalisma/GridColorArea.gd" type="Script" id=1]
+
+[node name="GridAreaRoot" type="Node2D" index="0"]
+
+_sections_unfolded = [ "Material", "Transform", "Z Index" ]
+
+[node name="GridColorArea" type="ColorRect" parent="." index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 1022.0
+margin_bottom = 596.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 8
+size_flags_horizontal = 1
+size_flags_vertical = 1
+color = Color( 0.234375, 0.19043, 0.19043, 1 )
+script = ExtResource( 1 )
+_sections_unfolded = [ "Focus", "Grow Direction", "Margin", "Material", "Mouse", "Rect" ]
+
+
