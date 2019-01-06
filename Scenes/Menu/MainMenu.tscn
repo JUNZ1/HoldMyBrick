@@ -4,7 +4,7 @@
 [ext_resource path="res://Assets/Buttons/flatLight/flatLight14.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Buttons/lineLight/lineLight14.png" type="Texture" id=3]
 
-[node name="Node2D" type="Node2D"]
+[node name="menuRoot" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 __meta__ = {
