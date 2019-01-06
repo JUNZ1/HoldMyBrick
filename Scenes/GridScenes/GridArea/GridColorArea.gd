@@ -5,9 +5,10 @@ var cellsize=50
 onready var gridSize =Vector2(self.get_size().x,self.get_size().y)
 var circleCoordinates=[]
 
+var yellowBrick=preload("res://Scenes/Bricks/YellowBrick/YellowBrickRoot.tscn")
+
 func _ready():
 	set_process_input(true)
-	print(gridSize)
 
 
 func _input(event):
@@ -34,5 +35,5 @@ func _draw():
 
 func _gridToLocalCoordinate(gridCoordinate):
 	var globalCoord= Vector2(((gridCoordinate.x)*cellsize)+cellsize/2,((gridCoordinate.y)*cellsize)+cellsize/2)
-	print(globalCoord)
 	circleCoordinates.append(globalCoord)
+	return globalCoord
