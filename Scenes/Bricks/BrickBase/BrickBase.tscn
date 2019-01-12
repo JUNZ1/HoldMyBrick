@@ -7,7 +7,7 @@
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
 
-[node name="BrickBase" type="Node2D" groups=[
+[node name="BrickBase" type="Node2D" index="0" groups=[
 "Brick",
 ]]
 
@@ -19,8 +19,8 @@ __meta__ = {
 [node name="StaticBody2D" type="StaticBody2D" parent="." index="0"]
 
 input_pickable = false
-collision_layer = 4
-collision_mask = 1
+collision_layer = 1
+collision_mask = 4
 constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
 friction = 1.0
