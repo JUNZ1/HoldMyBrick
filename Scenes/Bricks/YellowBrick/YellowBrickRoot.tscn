@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Scenes/Bricks/BrickBase/BrickBase.tscn" type="PackedScene" id=1]
 
-[node name="YellorBrickRoot" type="ColorRect"]
+[node name="YellorBrickRoot" type="ColorRect" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0

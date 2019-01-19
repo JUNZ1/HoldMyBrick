@@ -2,7 +2,6 @@ extends Node2D
 onready var gridControlAreaNode=get_node("GridColorArea")
 func _gridToLocalCoordinate(gridCoordinate):
 	var globalCoord= Vector2(((gridCoordinate.x)*gridControlAreaNode.cellsize),((gridCoordinate.y)*gridControlAreaNode.cellsize))
-	print(globalCoord)
 	return globalCoord
 
 
