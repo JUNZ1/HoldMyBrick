@@ -69,7 +69,7 @@ tracks/0/keys = {
 custom_solver_bias = 0.0
 extents = Vector2( 9.28572, 8.54286 )
 
-[node name="BrickBase" type="Node2D" index="0" groups=[
+[node name="BrickBase" type="Node2D" groups=[
 "Brick",
 ]]
 

@@ -24,10 +24,8 @@ func addBrick(position,color):
 	self.add_child(Instance)
 	
 func _that_brick_gone(position,color):
-	if color == GlobalValues.brickColor.Yellow : 
-		addBrick(position,GlobalValues.brickColor.Blue)
-	if color == GlobalValues.brickColor.Blue : 
-		addBrick(position,GlobalValues.brickColor.Red)
+	if color == GlobalValues.brickColor.Red:
+		positionArray[position.x][position.y]=0
 	var Instance_x=round(rand_range(position.x-1,position.x+1))
 	var Instance_y=round(rand_range(position.y-1,position.y+1))
 	if positionArray[Instance_x][Instance_y] == 0 :
@@ -35,6 +33,10 @@ func _that_brick_gone(position,color):
 		positionArray[Instance_x][Instance_y] =1
 	else:
 		print(Vector2(Instance_x,Instance_y))
+	if color == GlobalValues.brickColor.Yellow : 
+		addBrick(position,GlobalValues.brickColor.Blue)
+	if color == GlobalValues.brickColor.Blue : 
+		addBrick(position,GlobalValues.brickColor.Red)
 
 func create_2d_array(width, height, value):
     var a = []
