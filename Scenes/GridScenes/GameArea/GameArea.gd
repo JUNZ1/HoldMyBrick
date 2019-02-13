@@ -5,11 +5,20 @@ var positionArray
 onready var PlayerNode=get_node("Player")
 const widthNumber=20
 const heightNumber=7
+
 func _ready():
-	print("Loaded")
 	positionArray=create_2d_array(widthNumber,heightNumber,0)
-	positionArray[2][3]=1
-	addBrick(Vector2(2,3),GlobalValues.brickColor.Yellow)
+	adjustLevel()
+
+func adjustLevel():
+	for yellows in LevelManager.getYellows(LevelManager.currentLevel):
+		addBrick(yellows,GlobalValues.brickColor.Yellow)
+	
+	for blues in LevelManager.getBlues(LevelManager.currentLevel):
+		addBrick(blues,GlobalValues.brickColor.Blue)
+	
+	for reds in LevelManager.getReds(LevelManager.currentLevel):
+		addBrick(reds,GlobalValues.brickColor.Red)
 
 func _process(delta):
 	if $Left_Button.pressed:
