@@ -19,7 +19,7 @@ extents = Vector2( 10, 10 )
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
 
-[node name="GameArea" type="Node2D"]
+[node name="GameArea" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 __meta__ = {
@@ -87,7 +87,8 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 color = Color( 1, 1, 1, 1 )
 __meta__ = {
-"_edit_group_": true
+"_edit_group_": true,
+"_edit_lock_": true
 }
 
 [node name="StaticBody2d" type="StaticBody2D" parent="SolDuvar" index="0"]
@@ -126,7 +127,8 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 color = Color( 1, 1, 1, 1 )
 __meta__ = {
-"_edit_group_": true
+"_edit_group_": true,
+"_edit_lock_": true
 }
 
 [node name="StaticBody2d" type="StaticBody2D" parent="SagDuvar" index="0"]
@@ -191,6 +193,7 @@ margin_left = 391.0
 margin_top = 557.0
 margin_right = 618.0
 margin_bottom = 597.0
+MOVE_SPEED = 800
 
 [node name="Left_Button" type="TextureButton" parent="." index="7"]
 
@@ -217,6 +220,9 @@ texture_normal = ExtResource( 5 )
 texture_pressed = ExtResource( 6 )
 expand = true
 _sections_unfolded = [ "Rect" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Right_Button" type="TextureButton" parent="." index="8"]
 
@@ -243,5 +249,8 @@ texture_normal = ExtResource( 7 )
 texture_pressed = ExtResource( 8 )
 expand = true
 _sections_unfolded = [ "Rect", "Textures" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 

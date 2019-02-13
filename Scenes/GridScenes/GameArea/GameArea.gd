@@ -27,6 +27,7 @@ func _process(delta):
 		PlayerNode.goRight()
 
 func addBrick(position,color):
+	positionArray[position.y][position.x]=1
 	var Instance=yellowBrick.instance()
 	Instance.setBodyColor(color)
 	Instance.setPosition(Vector2(position.x,position.y))
@@ -37,12 +38,12 @@ func addBrick(position,color):
 	
 func _that_brick_gone(position,color):
 	if color == GlobalValues.brickColor.Red:
-		positionArray[position.x][position.y]=0
+		positionArray[position.y][position.x]=0
 	var Instance_x=round(rand_range(position.x-1,position.x+1))
 	var Instance_y=round(rand_range(position.y-1,position.y+1))
-	if positionArray[Instance_x][Instance_y] == 0 :
+	if positionArray[Instance_y][Instance_x] == 0 :
 		addBrick(Vector2(Instance_x,Instance_y),GlobalValues.brickColor.Yellow)
-		positionArray[Instance_x][Instance_y] =1
+		positionArray[Instance_y][Instance_x] =1
 	else:
 		print(Vector2(Instance_x,Instance_y))
 	if color == GlobalValues.brickColor.Yellow : 

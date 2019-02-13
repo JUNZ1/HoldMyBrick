@@ -8,7 +8,7 @@ var allLevelConf=[]
 var currentLevel=1
 
 func _ready():
-	allLevelConf.insert(0,[[Vector2(1,2),Vector2(3,4)],[Vector2(4,4)],[Vector2(5,4)]])
+	allLevelConf.insert(0,[[Vector2(5,3),Vector2(14,3)],[],[]])
 
 func getYellows(forThisLevel):
 	return allLevelConf[forThisLevel-1][yellowIndex]

@@ -1,6 +1,6 @@
 extends ColorRect
 
-export var MOVE_SPEED = 400
+export var MOVE_SPEED = 800
 var globalDelta=0
 func _ready():
 	pass
