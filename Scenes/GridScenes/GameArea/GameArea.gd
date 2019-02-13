@@ -5,6 +5,7 @@ var positionArray
 onready var PlayerNode=get_node("Player")
 const widthNumber=20
 const heightNumber=7
+var neighBourSeek =0
 
 func _ready():
 	positionArray=create_2d_array(widthNumber,heightNumber,0)
@@ -41,15 +42,26 @@ func _that_brick_gone(position,color):
 		positionArray[position.y][position.x]=0
 	var Instance_x=round(rand_range(position.x-1,position.x+1))
 	var Instance_y=round(rand_range(position.y-1,position.y+1))
+	if Instance_y >= heightNumber:
+		Instance_y = heightNumber-1
+	if Instance_x >= widthNumber:
+		Instance_x = widthNumber-1
+	if Instance_x < 0:
+		Instance_x = 0
 	if positionArray[Instance_y][Instance_x] == 0 :
+		neighBourSeek=0
 		addBrick(Vector2(Instance_x,Instance_y),GlobalValues.brickColor.Yellow)
 		positionArray[Instance_y][Instance_x] =1
+		if color == GlobalValues.brickColor.Yellow : 
+			addBrick(position,GlobalValues.brickColor.Blue)
+		if color == GlobalValues.brickColor.Blue : 
+			addBrick(position,GlobalValues.brickColor.Red)
 	else:
-		print(Vector2(Instance_x,Instance_y))
-	if color == GlobalValues.brickColor.Yellow : 
-		addBrick(position,GlobalValues.brickColor.Blue)
-	if color == GlobalValues.brickColor.Blue : 
-		addBrick(position,GlobalValues.brickColor.Red)
+		_that_brick_gone(position,color)
+		neighBourSeek=neighBourSeek+1
+		if neighBourSeek == 7:
+			get_tree().set_pause(true)
+
 
 func create_2d_array(width, height, value):
     var a = []
