@@ -17,6 +17,5 @@ func _process(delta):
 		linear_velocity.y= -maxSpeed
 func _onAreaEntered(area):
 	if area.get_parent().is_in_group("Player"):
-		print(linear_velocity)
 		linear_velocity.x=linear_velocity.x*1.2
 		linear_velocity.y=linear_velocity.y*1.2

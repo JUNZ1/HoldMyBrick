@@ -2,17 +2,20 @@ extends Node2D
 
 var yellowBrick=preload("res://Scenes/Bricks/BrickBase/BrickBase.tscn")
 var positionArray
+onready var PlayerNode=get_node("Player")
 const widthNumber=20
 const heightNumber=7
 func _ready():
+	print("Loaded")
 	positionArray=create_2d_array(widthNumber,heightNumber,0)
 	positionArray[2][3]=1
 	addBrick(Vector2(2,3),GlobalValues.brickColor.Yellow)
 
-#func _process(delta):
-#	# Called every frame. Delta is time since last frame.
-#	# Update game logic here.
-#	pass
+func _process(delta):
+	if $Left_Button.pressed:
+		PlayerNode.goLeft()
+	if $Right_Button.pressed:
+		PlayerNode.goRight()
 
 func addBrick(position,color):
 	var Instance=yellowBrick.instance()

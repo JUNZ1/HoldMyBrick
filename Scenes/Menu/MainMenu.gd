@@ -3,7 +3,7 @@ extends Node2D
 # class member variables go here, for example:
 # var a = 2
 # var b = "textvar"
-
+var GameAreaNode=preload("res://Scenes/GridScenes/GameArea/GameArea.tscn")
 func _ready():
 	# Called when the node is added to the scene for the first time.
 	# Initialization here
@@ -15,4 +15,4 @@ func _ready():
 #	pass
 
 func _playPressed():
-	get_tree().change_scene("res://Scenes/GridScenes/GameArea/GameArea.tscn")
+	get_tree().change_scene_to(GameAreaNode)

@@ -1,9 +1,13 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scenes/GridScenes/GameArea/GameArea.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/GridScenes/GridArea/GridAreaRoot.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Ball/Ball.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Player/Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/Buttons/flatLight/flatLight22.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Buttons/flatDark/flatDark23.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Buttons/flatLight/flatLight23.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Buttons/flatDark/flatDark24.png" type="Texture" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -15,7 +19,7 @@ extents = Vector2( 10, 10 )
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
 
-[node name="GameArea" type="Node2D"]
+[node name="GameArea" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 __meta__ = {
@@ -187,5 +191,57 @@ margin_left = 391.0
 margin_top = 557.0
 margin_right = 618.0
 margin_bottom = 597.0
+
+[node name="Left_Button" type="TextureButton" parent="." index="7"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 10.0
+margin_top = 482.0
+margin_right = 120.0
+margin_bottom = 592.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 6 )
+expand = true
+_sections_unfolded = [ "Rect" ]
+
+[node name="Right_Button" type="TextureButton" parent="." index="8"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 902.0
+margin_top = 488.0
+margin_right = 1012.0
+margin_bottom = 598.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 8 )
+expand = true
+_sections_unfolded = [ "Rect", "Textures" ]
 
 
