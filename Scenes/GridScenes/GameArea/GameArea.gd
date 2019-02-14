@@ -27,6 +27,23 @@ func _process(delta):
 	if $Right_Button.pressed:
 		PlayerNode.goRight()
 
+func getNeighbours(position):
+	var neigbourList=[]
+	for a in range(-1,2):
+		for b in range (-1,2):
+			var newPoint=position
+			newPoint.x=position.x+a
+			newPoint.y=position.y+b
+			if newPoint.y >= heightNumber:
+				continue
+			if newPoint.x >= widthNumber:
+				continue
+			if newPoint == position:
+				continue
+			neigbourList.push_back(newPoint)
+	return neigbourList
+
+
 func addBrick(position,color):
 	positionArray[position.y][position.x]=1
 	var Instance=yellowBrick.instance()
@@ -36,31 +53,32 @@ func addBrick(position,color):
 	Instance.enemyColor =color
 	Instance.connect("this_brick_gone",self,"_that_brick_gone")
 	self.add_child(Instance)
-	
+
+func etrafSarili(komsuArray):
+	var toplam=0
+	for eachPosition in komsuArray:
+		toplam=toplam+positionArray[eachPosition.y][eachPosition.x]
+	print(toplam)
+
 func _that_brick_gone(position,color):
+	var allNeigbours=getNeighbours(position)
+	etrafSarili(allNeigbours)
 	if color == GlobalValues.brickColor.Red:
 		positionArray[position.y][position.x]=0
-	var Instance_x=round(rand_range(position.x-1,position.x+1))
-	var Instance_y=round(rand_range(position.y-1,position.y+1))
-	if Instance_y >= heightNumber:
-		Instance_y = heightNumber-1
-	if Instance_x >= widthNumber:
-		Instance_x = widthNumber-1
-	if Instance_x < 0:
-		Instance_x = 0
-	if positionArray[Instance_y][Instance_x] == 0 :
-		neighBourSeek=0
-		addBrick(Vector2(Instance_x,Instance_y),GlobalValues.brickColor.Yellow)
-		positionArray[Instance_y][Instance_x] =1
-		if color == GlobalValues.brickColor.Yellow : 
-			addBrick(position,GlobalValues.brickColor.Blue)
-		if color == GlobalValues.brickColor.Blue : 
-			addBrick(position,GlobalValues.brickColor.Red)
-	else:
-		_that_brick_gone(position,color)
-		neighBourSeek=neighBourSeek+1
-		if neighBourSeek == 7:
-			get_tree().set_pause(true)
+	var countedNeigbours=0
+	var checkedIndexArray=[]
+	while allNeigbours.size() >=1:
+		var randIndex=randi()%(allNeigbours.size()-1)+1
+		if positionArray[allNeigbours[randIndex].y][allNeigbours[randIndex].x] ==0:
+			addBrick(allNeigbours[randIndex],GlobalValues.brickColor.Yellow)
+			positionArray[allNeigbours[randIndex].y][allNeigbours[randIndex].x] =1
+			if color == GlobalValues.brickColor.Yellow : 
+				addBrick(position,GlobalValues.brickColor.Blue)
+			if color == GlobalValues.brickColor.Blue : 
+				addBrick(position,GlobalValues.brickColor.Red)
+			return
+		else:
+			allNeigbours.erase(randIndex)
 
 
 func create_2d_array(width, height, value):
@@ -68,7 +86,6 @@ func create_2d_array(width, height, value):
     for y in range(height):
         a.append([])
         a[y].resize(width)
-
         for x in range(width):
             a[y][x] = value
     return a
