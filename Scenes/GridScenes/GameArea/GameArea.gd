@@ -6,9 +6,11 @@ onready var PlayerNode=get_node("Player")
 const widthNumber=20
 const heightNumber=7
 var neighBourSeek =0
+var spawnedBrickList=[]
 func _ready():
 	positionArray=create_2d_array(widthNumber,heightNumber,0)
 	adjustLevel()
+	$BrickSpawnTimer.connect("timeout",self,"_tickTock")
 
 func adjustLevel():
 	for yellows in LevelManager.getYellows(LevelManager.currentLevel):
@@ -28,8 +30,8 @@ func _process(delta):
 
 func getNeighbours(position):
 	var neigbourList=[]
-	for a in range(-2,3):
-		for b in range (-2,3):
+	for a in range(-1,2):
+		for b in range (-1,2):
 			var newPoint=position
 			newPoint.x=position.x+a
 			newPoint.y=position.y+b
@@ -44,14 +46,9 @@ func getNeighbours(position):
 
 
 func addBrick(position,color):
-	positionArray[position.y][position.x]=1
-	var Instance=yellowBrick.instance()
-	Instance.setBodyColor(color)
-	Instance.setPosition(Vector2(position.x,position.y))
-	Instance.position=$GridAreaRoot._gridToLocalCoordinate(Instance.getPosition())+$GridAreaRoot.position
-	Instance.enemyColor =color
-	Instance.connect("this_brick_gone",self,"_that_brick_gone")
-	self.add_child(Instance)
+	var insertThisToList=[position,color]
+	spawnedBrickList.push_back(insertThisToList)
+
 
 func etrafSarili(komsuArray):
 	var toplam=0
@@ -63,9 +60,7 @@ func _that_brick_gone(position,color):
 	if color == GlobalValues.brickColor.Red:
 		positionArray[position.y][position.x]=0
 	var allNeigbours=getNeighbours(position)
-	if etrafSarili(allNeigbours) >=7:
-		print(etrafSarili(allNeigbours))
-		return
+	print(etrafSarili(allNeigbours))
 	var checkedIndexArray=[]
 	while allNeigbours.size() >=1:
 		var randIndex=randi()%(allNeigbours.size()-1)+1
@@ -88,3 +83,18 @@ func create_2d_array(width, height, value):
         for x in range(width):
             a[y][x] = value
     return a
+
+func _tickTock():
+	if spawnedBrickList.size()==0:
+		return
+	var poppedOne=spawnedBrickList.pop_front()
+	var position = poppedOne[0]
+	var color = poppedOne[1]
+	positionArray[position.y][position.x]=1
+	var Instance=yellowBrick.instance()
+	Instance.setBodyColor(color)
+	Instance.setPosition(Vector2(position.x,position.y))
+	Instance.position=$GridAreaRoot._gridToLocalCoordinate(Instance.getPosition())+$GridAreaRoot.position
+	Instance.enemyColor =color
+	Instance.connect("this_brick_gone",self,"_that_brick_gone")
+	self.add_child(Instance)
