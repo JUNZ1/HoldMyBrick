@@ -3,7 +3,7 @@
 [ext_resource path="res://Scenes/LoadingScreen/LoadingScene.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/LoadingScreen/Funny-potato.jpg" type="Texture" id=2]
 
-[node name="LoadingScene" type="Node2D" index="0"]
+[node name="LoadingScene" type="Node2D"]
 
 script = ExtResource( 1 )
 

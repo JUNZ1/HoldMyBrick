@@ -1,12 +1,11 @@
 extends Node2D
-
+var loadingScreen = preload("res://Scenes/LoadingScreen/LoadingScene.tscn")
 var yellowBrick=preload("res://Scenes/Bricks/BrickBase/BrickBase.tscn")
 var positionArray
 onready var PlayerNode=get_node("Player")
 const widthNumber=20
 const heightNumber=7
 var neighBourSeek =0
-
 func _ready():
 	positionArray=create_2d_array(widthNumber,heightNumber,0)
 	adjustLevel()
@@ -29,14 +28,14 @@ func _process(delta):
 
 func getNeighbours(position):
 	var neigbourList=[]
-	for a in range(-1,2):
-		for b in range (-1,2):
+	for a in range(-2,3):
+		for b in range (-2,3):
 			var newPoint=position
 			newPoint.x=position.x+a
 			newPoint.y=position.y+b
-			if newPoint.y >= heightNumber:
+			if newPoint.y >= heightNumber or newPoint.y <0:
 				continue
-			if newPoint.x >= widthNumber:
+			if newPoint.x >= widthNumber or newPoint.x < 0:
 				continue
 			if newPoint == position:
 				continue
@@ -58,20 +57,20 @@ func etrafSarili(komsuArray):
 	var toplam=0
 	for eachPosition in komsuArray:
 		toplam=toplam+positionArray[eachPosition.y][eachPosition.x]
-	print(toplam)
+	return toplam
 
 func _that_brick_gone(position,color):
-	var allNeigbours=getNeighbours(position)
-	etrafSarili(allNeigbours)
 	if color == GlobalValues.brickColor.Red:
 		positionArray[position.y][position.x]=0
-	var countedNeigbours=0
+	var allNeigbours=getNeighbours(position)
+	if etrafSarili(allNeigbours) >=7:
+		print(etrafSarili(allNeigbours))
+		return
 	var checkedIndexArray=[]
 	while allNeigbours.size() >=1:
 		var randIndex=randi()%(allNeigbours.size()-1)+1
 		if positionArray[allNeigbours[randIndex].y][allNeigbours[randIndex].x] ==0:
 			addBrick(allNeigbours[randIndex],GlobalValues.brickColor.Yellow)
-			positionArray[allNeigbours[randIndex].y][allNeigbours[randIndex].x] =1
 			if color == GlobalValues.brickColor.Yellow : 
 				addBrick(position,GlobalValues.brickColor.Blue)
 			if color == GlobalValues.brickColor.Blue : 
