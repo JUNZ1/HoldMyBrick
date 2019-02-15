@@ -29,7 +29,7 @@ __meta__ = {
 [node name="BrickSpawnTimer" type="Timer" parent="." index="0"]
 
 process_mode = 1
-wait_time = 0.1
+wait_time = 0.01
 one_shot = false
 autostart = true
 

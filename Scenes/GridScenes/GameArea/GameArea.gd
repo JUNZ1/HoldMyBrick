@@ -60,19 +60,20 @@ func _that_brick_gone(position,color):
 	if color == GlobalValues.brickColor.Red:
 		positionArray[position.y][position.x]=0
 	var allNeigbours=getNeighbours(position)
-	print(etrafSarili(allNeigbours))
+	if etrafSarili(allNeigbours) >= 6:
+		return
 	var checkedIndexArray=[]
-	while allNeigbours.size() >=1:
+	while allNeigbours.size() >=3:
 		var randIndex=randi()%(allNeigbours.size()-1)+1
 		if positionArray[allNeigbours[randIndex].y][allNeigbours[randIndex].x] ==0:
 			addBrick(allNeigbours[randIndex],GlobalValues.brickColor.Yellow)
-			if color == GlobalValues.brickColor.Yellow : 
-				addBrick(position,GlobalValues.brickColor.Blue)
-			if color == GlobalValues.brickColor.Blue : 
-				addBrick(position,GlobalValues.brickColor.Red)
-			return
+			break
 		else:
 			allNeigbours.erase(randIndex)
+	if color == GlobalValues.brickColor.Yellow : 
+		addBrick(position,GlobalValues.brickColor.Blue)
+	if color == GlobalValues.brickColor.Blue : 
+		addBrick(position,GlobalValues.brickColor.Red)
 
 
 func create_2d_array(width, height, value):
