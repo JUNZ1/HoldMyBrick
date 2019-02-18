@@ -60,16 +60,19 @@ func _that_brick_gone(position,color):
 	if color == GlobalValues.brickColor.Red:
 		positionArray[position.y][position.x]=0
 	var allNeigbours=getNeighbours(position)
-	if etrafSarili(allNeigbours) >= 6:
-		return
-	var checkedIndexArray=[]
-	while allNeigbours.size() >=3:
-		var randIndex=randi()%(allNeigbours.size()-1)+1
+	while allNeigbours.size() >0:
+		var randIndex=randi()%(allNeigbours.size())
+#		print("Size: ",allNeigbours.size())
+#		print("Rand Index: ",randIndex)
+#		print(allNeigbours)
 		if positionArray[allNeigbours[randIndex].y][allNeigbours[randIndex].x] ==0:
 			addBrick(allNeigbours[randIndex],GlobalValues.brickColor.Yellow)
 			break
 		else:
-			allNeigbours.erase(randIndex)
+			allNeigbours.remove(randIndex)
+			print("Kalan Size: ",allNeigbours.size())
+			print("RandIndex: ", randIndex)
+			print(allNeigbours)
 	if color == GlobalValues.brickColor.Yellow : 
 		addBrick(position,GlobalValues.brickColor.Blue)
 	if color == GlobalValues.brickColor.Blue : 
