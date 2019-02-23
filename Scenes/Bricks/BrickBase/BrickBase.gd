@@ -16,12 +16,7 @@ func _ready():
 #	pass
 
 func setBodyColor(color):
-	if color == GlobalValues.brickColor.Yellow:
-		$AnimationPlayer.play("YellowBrick")
-	if color == GlobalValues.brickColor.Blue:
-		$AnimationPlayer.play("BlueBrick")
-	if color == GlobalValues.brickColor.Red:
-		$AnimationPlayer.play("RedBrick")
+	pass
 
 func setPosition(position):
 	gridCoordinate=position

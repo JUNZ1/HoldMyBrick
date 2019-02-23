@@ -1,6 +1,14 @@
 extends Node2D
 var loadingScreen = preload("res://Scenes/LoadingScreen/LoadingScene.tscn")
 var yellowBrick=preload("res://Scenes/Bricks/BrickBase/BrickBase.tscn")
+var brickBase=preload("res://Scenes/Bricks/BrickBase/BrickBase.tscn")
+var blueBrick= preload("res://Scenes/Bricks/BlueBrick/BlueBrickRoot.tscn")
+var greenBrick=preload("res://Scenes/Bricks/GreenBrick/GreenBrickRoot.tscn")
+var orangeBrick=preload("res://Scenes/Bricks/OrangeBrick/OrangeBrickRoot.tscn")
+var purpleBrick=preload("res://Scenes/Bricks/PurpleBrick/PurpleBrickRoot.tscn")
+var redBrick=preload("res://Scenes/Bricks/RedBrick/RedBrickRoot.tscn")
+var tealBrick=preload("res://Scenes/Bricks/TealBrick/TealBrickRoot.tscn")
+
 var positionArray
 onready var PlayerNode=get_node("Player")
 const widthNumber=20
@@ -13,8 +21,8 @@ func _ready():
 	$BrickSpawnTimer.connect("timeout",self,"_tickTock")
 
 func adjustLevel():
-	for yellows in LevelManager.getYellows(LevelManager.currentLevel):
-		addBrick(yellows,GlobalValues.brickColor.Yellow)
+	for yellows in LevelManager.getGreens(LevelManager.currentLevel):
+		addBrick(yellows,GlobalValues.brickColor.Green)
 	
 	for blues in LevelManager.getBlues(LevelManager.currentLevel):
 		addBrick(blues,GlobalValues.brickColor.Blue)
@@ -66,14 +74,14 @@ func _that_brick_gone(position,color):
 #		print("Rand Index: ",randIndex)
 #		print(allNeigbours)
 		if positionArray[allNeigbours[randIndex].y][allNeigbours[randIndex].x] ==0:
-			addBrick(allNeigbours[randIndex],GlobalValues.brickColor.Yellow)
+			addBrick(allNeigbours[randIndex],GlobalValues.brickColor.Green)
 			break
 		else:
 			allNeigbours.remove(randIndex)
 			print("Kalan Size: ",allNeigbours.size())
 			print("RandIndex: ", randIndex)
 			print(allNeigbours)
-	if color == GlobalValues.brickColor.Yellow : 
+	if color == GlobalValues.brickColor.Green : 
 		addBrick(position,GlobalValues.brickColor.Blue)
 	if color == GlobalValues.brickColor.Blue : 
 		addBrick(position,GlobalValues.brickColor.Red)
@@ -95,10 +103,30 @@ func _tickTock():
 	var position = poppedOne[0]
 	var color = poppedOne[1]
 	positionArray[position.y][position.x]=1
-	var Instance=yellowBrick.instance()
+	var Instance=brickBase.instance()
 	Instance.setBodyColor(color)
 	Instance.setPosition(Vector2(position.x,position.y))
 	Instance.position=$GridAreaRoot._gridToLocalCoordinate(Instance.getPosition())+$GridAreaRoot.position
 	Instance.enemyColor =color
 	Instance.connect("this_brick_gone",self,"_that_brick_gone")
+	var colorInstance
+	if color == GlobalValues.brickColor.Blue:
+		colorInstance= blueBrick.instance()
+
+	if color == GlobalValues.brickColor.Red:
+		colorInstance= redBrick.instance()
+	if color == GlobalValues.brickColor.Green:
+		colorInstance= greenBrick.instance()
+	if color == GlobalValues.brickColor.Blue:
+		colorInstance= blueBrick.instance()
+	if color == GlobalValues.brickColor.Yellow:
+		colorInstance= yellowBrick.instance()
+	if color == GlobalValues.brickColor.Orange:
+		colorInstance= orangeBrick.instance()
+	if color == GlobalValues.brickColor.Purple:
+		colorInstance= purpleBrick.instance()
+	if color == GlobalValues.brickColor.Teal:
+		colorInstance= tealBrick.instance()
+
+	Instance.add_child(colorInstance)
 	self.add_child(Instance)
