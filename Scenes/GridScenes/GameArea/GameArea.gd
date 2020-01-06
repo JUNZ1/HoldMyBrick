@@ -85,8 +85,14 @@ func _that_brick_gone(position,color):
 		addBrick(position,GlobalValues.brickColor.Blue)
 	if color == GlobalValues.brickColor.Blue : 
 		addBrick(position,GlobalValues.brickColor.Red)
-
-
+	if color == GlobalValues.brickColor.Red : 
+		addBrick(position,GlobalValues.brickColor.Orange)
+	if color == GlobalValues.brickColor.Orange : 
+		addBrick(position,GlobalValues.brickColor.Purple)
+	if color == GlobalValues.brickColor.Purple : 
+		addBrick(position,GlobalValues.brickColor.Yellow)
+	if color == GlobalValues.brickColor.Yellow : 
+		addBrick(position,GlobalValues.brickColor.Teal)
 func create_2d_array(width, height, value):
     var a = []
     for y in range(height):
@@ -110,9 +116,9 @@ func _tickTock():
 	Instance.enemyColor =color
 	Instance.connect("this_brick_gone",self,"_that_brick_gone")
 	var colorInstance
+	
 	if color == GlobalValues.brickColor.Blue:
 		colorInstance= blueBrick.instance()
-
 	if color == GlobalValues.brickColor.Red:
 		colorInstance= redBrick.instance()
 	if color == GlobalValues.brickColor.Green:

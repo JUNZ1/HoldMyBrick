@@ -1,72 +1,43 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scenes/Ball/Ball.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Top.png" type="Texture" id=2]
 
-[sub_resource type="CircleShape2D" id=1]
-
-custom_solver_bias = 0.0
-radius = 10.0
+[sub_resource type="PhysicsMaterial" id=1]
+friction = 0.0
+bounce = 1.0
 
 [sub_resource type="CircleShape2D" id=2]
 
-custom_solver_bias = 0.0
-radius = 10.0
+[sub_resource type="CircleShape2D" id=3]
 
 [node name="BallRoot" type="RigidBody2D" groups=[
 "Ball",
 ]]
-
-input_pickable = false
 collision_layer = 4
 collision_mask = 11
 mode = 2
-mass = 1.0
-friction = 0.0
-bounce = 1.0
+physics_material_override = SubResource( 1 )
 gravity_scale = 0.0
-custom_integrator = false
-continuous_cd = 0
-contacts_reported = 0
-contact_monitor = false
-sleeping = false
-can_sleep = true
 linear_velocity = Vector2( 0, 400 )
 linear_damp = 0.0
-angular_velocity = 0.0
 angular_damp = 0.0
 script = ExtResource( 1 )
-_sections_unfolded = [ "Angular", "Applied Forces", "Collision", "Linear" ]
 
-[node name="Sprite" type="Sprite" parent="." index="0"]
-
+[node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 0.157216, 0.163768 )
 texture = ExtResource( 2 )
-_sections_unfolded = [ "Transform" ]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
-
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -1.03988, 0.144058 )
 scale = Vector2( 1.75626, 1.79285 )
-shape = SubResource( 1 )
-
-[node name="Area2D" type="Area2D" parent="." index="2"]
-
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-collision_layer = 4
-collision_mask = 8
-audio_bus_override = false
-audio_bus_name = "Master"
-_sections_unfolded = [ "Collision" ]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
-
-position = Vector2( -1.15494, -0.161516 )
-scale = Vector2( 1.75194, 1.83055 )
 shape = SubResource( 2 )
 
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 8
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( -1.15494, -0.161516 )
+scale = Vector2( 1.75194, 1.83055 )
+shape = SubResource( 3 )

@@ -9,6 +9,9 @@ func _ready():
 	# Initialization here
 	setBodyColor(enemyColor)
 	$Area2D.connect("area_entered",self,"_areaEntered")
+	if enemyColor == GlobalValues.brickColor.Teal:
+		$StaticBody2D.queue_free()
+		$Area2D.queue_free()
 
 #func _process(delta):
 #	# Called every frame. Delta is time since last frame.
@@ -25,5 +28,6 @@ func getPosition():
 	return gridCoordinate
 	
 func _areaEntered(area):
-	emit_signal("this_brick_gone",gridCoordinate,enemyColor)
-	self.queue_free()
+	if enemyColor!=GlobalValues.brickColor.Teal:
+		emit_signal("this_brick_gone",gridCoordinate,enemyColor)
+		self.queue_free()

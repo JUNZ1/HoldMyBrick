@@ -2,8 +2,5 @@
 
 [ext_resource path="res://Scenes/GlobalValues/GlobalValues.gd" type="Script" id=1]
 
-[node name="GlobalValuesRoot" type="Node2D" index="0"]
-
+[node name="GlobalValuesRoot" type="Node2D"]
 script = ExtResource( 1 )
-
-
